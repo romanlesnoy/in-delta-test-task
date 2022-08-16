@@ -21,6 +21,10 @@ const useHttp = () => {
                 throw new Error("Request failed!");
             }
 
+            if (response.statusText === "No Content") {
+                return applyData("Comment Send");
+            }
+
             const data = await response.json();
 
             applyData(data);
