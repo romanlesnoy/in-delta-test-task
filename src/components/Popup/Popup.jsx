@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Modal from "../Modal/Modal";
 import CommentForm from "../CommentForm/CommentForm";
 import ErrorNotification from "../ErrorNotification/ErrorNotification";
+import Preloader from "../Preloader/Preloader";
 import useHttp from "../../hooks/use-http";
 
 const Popup = (props) => {
@@ -24,19 +25,16 @@ const Popup = (props) => {
         );
     }, [fetchImage, props.imageId]);
 
-    const loadingContent = <p>Loading ...</p>;
-
     const popupContent = (
         <>
             <img src={image.url} alt="some staff" />
-            <CommentForm />
-            <button onClick={props.onClose}>Close</button>
+            <CommentForm id={props.imageId} />
         </>
     );
 
     return (
         <Modal onClose={props.onClose}>
-            {isLoading && loadingContent}
+            {isLoading && <Preloader />}
             {!isLoading && !imageError && popupContent}
             {!isLoading && imageError && (
                 <ErrorNotification error={imageError} />

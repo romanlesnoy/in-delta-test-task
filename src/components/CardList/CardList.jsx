@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import classes from "./CardList.module.css";
 import ImageCard from "../ImageCard/ImageCard";
 import ErrorNotification from "../ErrorNotification/ErrorNotification";
+import Preloader from "../Preloader/Preloader";
 import useHttp from "../../hooks/use-http.js";
 
 const CardList = (props) => {
@@ -24,14 +25,11 @@ const CardList = (props) => {
         );
     }, [fetchCards]);
 
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
-
     return (
         <section>
+            {isLoading && <Preloader />}
             {error && <ErrorNotification error={error} />}
-            {images && !error && (
+            {images && (
                 <ul className={classes.cardList}>
                     {images.map((image) => {
                         return (
