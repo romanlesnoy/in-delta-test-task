@@ -1,0 +1,5 @@
+.banner {
+    background: url("../../images/banner.jpg") no-repeat 50%;
+    height: 192px;
+    background-size: cover;
+}

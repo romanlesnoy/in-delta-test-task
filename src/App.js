@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import CardList from "./components/CardList/CardList";
 import Popup from "./components/Popup/Popup";
+import Banner from "./components/Banner/Banner";
+import Profile from "./components/Profile/Profile";
 
 function App() {
     const [popupIsShown, setPopupIsShown] = useState(false);
@@ -22,6 +24,8 @@ function App() {
             {popupIsShown && (
                 <Popup onClose={hidePopupHandler} imageId={selectedImageId} />
             )}
+            <Banner />
+            <Profile />
             <Header />
             <main>
                 <CardList onImageClick={handleImage} />
