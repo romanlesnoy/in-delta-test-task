@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
 import CommentForm from "../CommentForm/CommentForm";
+import ErrorNotification from "../ErrorNotification/ErrorNotification";
 import useHttp from "../../hooks/use-http";
 
 const Popup = (props) => {
     const [image, setImage] = useState({});
 
-    const { isLoading, error, sendRequest: fetchImage } = useHttp();
+    const { isLoading, error: imageError, sendRequest: fetchImage } = useHttp();
 
     useEffect(() => {
         const getLargeImage = (image) => {
@@ -33,18 +34,13 @@ const Popup = (props) => {
         </>
     );
 
-    const errorContent = (
-        <>
-            <p>{error}</p>
-            <button onClick={props.onClose}>Close</button>
-        </>
-    );
-
     return (
         <Modal onClose={props.onClose}>
             {isLoading && loadingContent}
-            {!isLoading && !error && popupContent}
-            {!isLoading && error && errorContent}
+            {!isLoading && !imageError && popupContent}
+            {!isLoading && imageError && (
+                <ErrorNotification error={imageError} />
+            )}
         </Modal>
     );
 };

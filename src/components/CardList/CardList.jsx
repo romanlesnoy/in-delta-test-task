@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import classes from "./CardList.module.css";
 import ImageCard from "../ImageCard/ImageCard";
-
+import ErrorNotification from "../ErrorNotification/ErrorNotification";
 import useHttp from "../../hooks/use-http.js";
 
 const CardList = (props) => {
@@ -28,23 +28,23 @@ const CardList = (props) => {
         return <p>Loading...</p>;
     }
 
-    if (error) {
-        return <p>{error}</p>;
-    }
-
     return (
-        <ul className={classes.cardList}>
-            {images &&
-                images.map((image) => {
-                    return (
-                        <ImageCard
-                            key={image.id}
-                            {...image}
-                            onClick={props.onImageClick}
-                        />
-                    );
-                })}
-        </ul>
+        <section>
+            {error && <ErrorNotification error={error} />}
+            {images && !error && (
+                <ul className={classes.cardList}>
+                    {images.map((image) => {
+                        return (
+                            <ImageCard
+                                key={image.id}
+                                {...image}
+                                onClick={props.onImageClick}
+                            />
+                        );
+                    })}
+                </ul>
+            )}
+        </section>
     );
 };
 
