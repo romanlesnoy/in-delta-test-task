@@ -3,6 +3,7 @@
 Демо приложения с галереей карточек
 
 [Ссылка на сайт](app-test-task.netlify.app)
+
 [Ссылка на макет](https://www.figma.com/file/3lj6aQtyOdmlsWIiDYHzyJ/Untitled?node-id=0%3A1)
 
 <img width="1525" alt="Screenshot 2022-08-16 at 20 46 44" src="https://user-images.githubusercontent.com/69040854/184946287-579997f1-5fae-4c8b-9b02-f9ae4eac1d1b.png">
