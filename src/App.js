@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Header from "./components/Header/Header";
 import CardList from "./components/CardList/CardList";
 import Popup from "./components/Popup/Popup";
 import Banner from "./components/Banner/Banner";
@@ -26,7 +25,6 @@ function App() {
             )}
             <Banner />
             <Profile />
-            <Header />
             <main>
                 <CardList onImageClick={handleImage} />
             </main>
