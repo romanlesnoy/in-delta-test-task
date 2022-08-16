@@ -1,5 +1,6 @@
 .cardList {
     max-width: 1358px;
+    padding-top: 46px;
     display: grid;
     grid-template-columns: repeat(auto-fill, 430px);
     grid-auto-rows: auto;
@@ -14,8 +15,9 @@
     }
 }
 
-@media screen and (max-width: 892px) {
+@media screen and (max-width: 932px) {
     .cardList {
+        padding-top: 24px;
         grid-template-columns: repeat(1, 430px);
     }
 }

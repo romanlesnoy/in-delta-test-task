@@ -9,7 +9,6 @@ const Popup = (props) => {
     const [image, setImage] = useState({});
 
     const { isLoading, error, sendRequest: fetchImage } = useHttp();
-    console.log(isLoading, error);
 
     useEffect(() => {
         const getLargeImage = (image) => {

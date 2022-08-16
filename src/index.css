@@ -9,7 +9,7 @@ body {
     padding: 0;
     height: 100%;
     color: #000;
-    background: #fff;
+    background: #e5e5e5;
     font-family: Helvetica, Arial, system-ui, sans-serif;
     min-width: 320px;
 }
@@ -56,22 +56,6 @@ img {
     -webkit-tap-highlight-color: transparent;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    outline: none;
-}
-
-a:visited {
-    color: #7f788e;
-}
-
-a:hover {
-    opacity: 0.5;
-    transition: 0.3s, ease-in-out, linear;
-    cursor: pointer;
-}
-
 button {
     background-color: transparent;
     border-radius: 0;
@@ -85,6 +69,12 @@ button {
     appearance: none;
     -webkit-appearance: none;
     margin: 0;
+}
+
+button:hover {
+    opacity: 0.5;
+    transition: 0.3s, ease-in-out, linear;
+    cursor: pointer;
 }
 
 button:disabled,
@@ -109,22 +99,4 @@ textarea {
     background-color: transparent;
     padding: 0;
     margin: 0;
-}
-
-article h1,
-article h2 {
-    font-size: 13pt;
-    font-weight: bold;
-}
-
-article a {
-    text-decoration-line: underline;
-}
-
-a:visited {
-    color: #7f788e;
-}
-
-p {
-    margin: 0.5rem 0;
 }
