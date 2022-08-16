@@ -1,15 +1,27 @@
 .cardList {
-    list-style-type: none;
-
+    max-width: 1358px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, 430px);
+    grid-auto-rows: auto;
+    column-gap: 32px;
+    row-gap: 32px;
     justify-content: center;
-    justify-items: center;
-    grid-gap: 16px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1354px) {
     .cardList {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 430px);
+    }
+}
+
+@media screen and (max-width: 892px) {
+    .cardList {
+        grid-template-columns: repeat(1, 430px);
+    }
+}
+
+@media screen and (max-width: 494px) {
+    .cardList {
+        grid-template-columns: repeat(1, 320px);
     }
 }
