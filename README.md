@@ -2,7 +2,7 @@
 
 Демо приложения с галереей карточек
 
-[Ссылка на сайт](app-test-task.netlify.app)
+[Ссылка на сайт](https://www.app-test-task.netlify.app)
 
 [Ссылка на макет](https://www.figma.com/file/3lj6aQtyOdmlsWIiDYHzyJ/Untitled?node-id=0%3A1)
 
