@@ -1,6 +1,6 @@
 .cardList {
     max-width: 1358px;
-    padding-top: 46px;
+    padding: 46px 0 46px 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, 430px);
     grid-auto-rows: auto;
