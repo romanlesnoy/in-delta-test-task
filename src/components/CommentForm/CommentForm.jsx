@@ -28,7 +28,6 @@ const CommentForm = (props) => {
     };
 
     const submitCommentHandler = async ({ comment }) => {
-        console.log(comment);
         sendCommentRequest(
             {
                 url: `https://boiling-refuge-66454.herokuapp.com/images/${props.id}/comments`,
@@ -38,7 +37,7 @@ const CommentForm = (props) => {
                     "Content-Type": "application/json"
                 },
                 body: {
-                    name: "text",
+                    name: "The username must be taken from the context",
                     comment: comment
                 }
             },
