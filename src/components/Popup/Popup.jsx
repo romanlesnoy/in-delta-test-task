@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
+import CommentForm from "../CommentForm/CommentForm";
 import useHttp from "../../hooks/use-http";
-import classes from "./Popup.module.css";
 
 const Popup = (props) => {
     const [image, setImage] = useState({});
@@ -28,7 +28,8 @@ const Popup = (props) => {
 
     const popupContent = (
         <>
-            <img src={image.url} alt="some staff" className={classes.image} />
+            <img src={image.url} alt="some staff" />
+            <CommentForm />
             <button onClick={props.onClose}>Close</button>
         </>
     );
