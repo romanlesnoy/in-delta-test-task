@@ -24,10 +24,27 @@ const Popup = (props) => {
         );
     }, [fetchImage, props.imageId]);
 
-    return (
-        <Modal onClose={props.onClose}>
+    const loadingContent = <p>Loading ...</p>;
+
+    const popupContent = (
+        <>
             <img src={image.url} alt="some staff" className={classes.image} />
             <button onClick={props.onClose}>Close</button>
+        </>
+    );
+
+    const errorContent = (
+        <>
+            <p>{error}</p>
+            <button onClick={props.onClose}>Close</button>
+        </>
+    );
+
+    return (
+        <Modal onClose={props.onClose}>
+            {isLoading && loadingContent}
+            {!isLoading && !error && popupContent}
+            {!isLoading && error && errorContent}
         </Modal>
     );
 };
