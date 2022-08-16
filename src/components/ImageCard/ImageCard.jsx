@@ -20,6 +20,7 @@ const ImageCard = (props) => {
                     src={props.url}
                     alt="some random staff"
                 />
+                <p className={classes.text}>id: {props.id}</p>
             </article>
         </li>
     );
