@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
 import useHttp from "../../hooks/use-http";
+import classes from "./Popup.module.css";
 
 const Popup = (props) => {
     const [image, setImage] = useState({});
@@ -25,7 +26,7 @@ const Popup = (props) => {
 
     return (
         <Modal onClose={props.onClose}>
-            <img src={image.url} alt="some staff" />
+            <img src={image.url} alt="some staff" className={classes.image} />
             <button onClick={props.onClose}>Close</button>
         </Modal>
     );
