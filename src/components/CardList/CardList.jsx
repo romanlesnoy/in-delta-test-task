@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { fetchImages } from "../../store/images-actions";
 
 import classes from "./CardList.module.css";
 import ImageCard from "../ImageCard/ImageCard";
 import ErrorNotification from "../ErrorNotification/ErrorNotification";
 import Preloader from "../Preloader/Preloader";
-import useHttp from "../../hooks/use-http.js";
 
 const CardList = (props) => {
-    const [images, setImages] = useState([]);
-
-    const { isLoading, error, sendRequest: fetchCards } = useHttp();
+    const dispatch = useDispatch();
+    const isLoading = useSelector((state) => state.images.imagesAreLoading);
+    const images = useSelector((state) => state.images.images);
+    const notification = useSelector((state) => state.error.notification);
 
     useEffect(() => {
-        const getCards = (cards) => {
-            setImages(cards);
-        };
-
-        fetchCards(
-            {
-                url: "https://boiling-refuge-66454.herokuapp.com/images"
-            },
-            getCards
-        );
-    }, [fetchCards]);
+        dispatch(fetchImages());
+    }, [dispatch]);
 
     return (
         <section>
             {isLoading && <Preloader />}
-            {error && <ErrorNotification error={error} />}
+            {notification && <ErrorNotification error={notification.title} />}
             {images && (
                 <ul className={classes.cardList}>
                     {images.map((image) => {

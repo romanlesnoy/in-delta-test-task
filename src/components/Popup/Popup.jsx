@@ -1,42 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLargeImage } from "../../store/images-actions";
 
 import Modal from "../Modal/Modal";
 import CommentForm from "../CommentForm/CommentForm";
 import ErrorNotification from "../ErrorNotification/ErrorNotification";
 import Preloader from "../Preloader/Preloader";
-import useHttp from "../../hooks/use-http";
+import CommentList from "../CommentList/CommentList";
 import classes from "./Popup.module.css";
 
 const Popup = (props) => {
-    const [image, setImage] = useState({});
-
-    const { isLoading, error: imageError, sendRequest: fetchImage } = useHttp();
+    const dispatch = useDispatch();
+    const popupImage = useSelector((state) => state.images.popupImage);
 
     useEffect(() => {
-        const getLargeImage = (image) => {
-            setImage(image);
-        };
+        dispatch(fetchLargeImage(props.imageId));
+    }, [dispatch, props.imageId]);
 
-        fetchImage(
-            {
-                url: `https://boiling-refuge-66454.herokuapp.com/images/${props.imageId}`
-            },
-            getLargeImage
-        );
-    }, [fetchImage, props.imageId]);
-
-    const popupContent = (
-        <>
-            <img className={classes.image} src={image.url} alt="some staff" />
-            <CommentForm id={props.imageId} />
-        </>
-    );
+    const isLoading = useSelector((state) => state.images.popupImageIsLoading);
+    const imageError = useSelector((state) => state.error.notification);
 
     return (
         <Modal onClose={props.onClose}>
             {isLoading && <Preloader />}
-            {!isLoading && !imageError && popupContent}
+            {!isLoading && popupImage && (
+                <>
+                    <img
+                        className={classes.image}
+                        src={popupImage.url}
+                        alt="some staff"
+                    />
+                    <CommentList comments={popupImage.comments} />
+                    <CommentForm id={props.imageId} />
+                </>
+            )}
             {!isLoading && imageError && (
                 <ErrorNotification error={imageError} />
             )}
