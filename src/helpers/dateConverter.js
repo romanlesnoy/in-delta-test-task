@@ -1,5 +1,5 @@
 const dateConverter = (time) => {
-    const newDate = new Date(time * 1000);
+    const newDate = new Date(time);
     return newDate.toLocaleString();
 };
 
