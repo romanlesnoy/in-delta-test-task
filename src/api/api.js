@@ -16,8 +16,8 @@ export const getLargeImage = (id) => {
     return fetch(`${baseUrl}/${id}`).then(response);
 };
 
-export const sendComment = (id, name, comment) => {
-    fetch(`${baseUrl}/${id}/comments`, {
+export const sendComment = async (id, name, comment) => {
+    return fetch(`${baseUrl}/${id}/comments`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -27,5 +27,11 @@ export const sendComment = (id, name, comment) => {
             name: name,
             comment: comment
         })
-    }).then(response);
+    }).then((res) => {
+        if (res.ok) {
+            return "Comment sent successfully!";
+        } else {
+            throw new Error("Request failed!");
+        }
+    });
 };
