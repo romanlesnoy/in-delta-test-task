@@ -4,6 +4,12 @@
     gap: 8px;
 }
 
+.image {
+    width: 430px;
+    height: 216px;
+    object-fit: cover;
+}
+
 .text {
     font-style: normal;
     font-weight: 500;
