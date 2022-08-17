@@ -6,7 +6,7 @@ import classes from "./CommentList.module.css";
 
 const CommentList = ({ comments }) => {
     const titleContent =
-        comments.length === 0 ? "No comments" : `Comments: ${comments.length}`;
+        comments.length === 0 ? "No Comments" : `Comments: ${comments.length}`;
 
     return (
         <section>

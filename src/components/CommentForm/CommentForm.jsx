@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 
+import { postComment } from "../../store/images-actions";
 import classes from "./CommentForm.module.css";
-import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
 
 const isEmpty = (value) => value.trim() !== "";
@@ -17,33 +18,10 @@ const CommentForm = (props) => {
         reset: resetCommentInput
     } = useInput(isEmpty);
 
-    const {
-        isLoading,
-        error: commentError,
-        sendRequest: sendCommentRequest
-    } = useHttp();
-
-    const addComment = (comment) => {
-        console.log(comment);
-    };
-
-    const submitCommentHandler = async ({ comment }) => {
-        sendCommentRequest(
-            {
-                url: `https://boiling-refuge-66454.herokuapp.com/images/${props.id}/comments`,
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: {
-                    name: "The username must be taken from the context",
-                    comment: comment
-                }
-            },
-            addComment
-        );
-    };
+    const dispatch = useDispatch();
+    const userName = useSelector((state) => state.user.userName);
+    const isLoading = useSelector((state) => state.images.commentIsSending);
+    const notification = useSelector((state) => state.error.notification);
 
     const saveHandler = (event) => {
         event.preventDefault();
@@ -52,9 +30,17 @@ const CommentForm = (props) => {
             return;
         }
 
-        submitCommentHandler({
-            comment: enteredComment
-        });
+        const date = new Date();
+
+        dispatch(
+            postComment({
+                id: date.getTime(),
+                comment: enteredComment,
+                name: userName,
+                date: date.getTime(),
+                imageId: props.id
+            })
+        );
 
         resetCommentInput();
     };
@@ -77,16 +63,14 @@ const CommentForm = (props) => {
                     onBlur={commentBlurHandler}
                 ></textarea>
 
-                {!commentInputHasError && !commentError && (
+                {!commentInputHasError && (
                     <span className={classes.span}>
                         Write a few sentences about the photo.
                     </span>
                 )}
 
-                {!commentInputHasError && commentError && (
-                    <span className={classes.span}>
-                        {commentError}. Try again later.
-                    </span>
+                {notification && (
+                    <span className={classes.span}>{notification.message}</span>
                 )}
 
                 {commentInputHasError && (
@@ -100,7 +84,7 @@ const CommentForm = (props) => {
                     type="submit"
                     disabled={!enteredCommentIsValid}
                 >
-                    {isLoading ? "Send" : "Save"}
+                    {isLoading ? "Sending" : "Save"}
                 </button>
             </form>
         </React.Fragment>

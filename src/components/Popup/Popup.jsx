@@ -13,13 +13,12 @@ import classes from "./Popup.module.css";
 const Popup = (props) => {
     const dispatch = useDispatch();
     const popupImage = useSelector((state) => state.images.popupImage);
+    const isLoading = useSelector((state) => state.images.popupImageIsLoading);
+    const imageError = useSelector((state) => state.error.notification);
 
     useEffect(() => {
         dispatch(fetchLargeImage(props.imageId));
     }, [dispatch, props.imageId]);
-
-    const isLoading = useSelector((state) => state.images.popupImageIsLoading);
-    const imageError = useSelector((state) => state.error.notification);
 
     return (
         <Modal onClose={props.onClose}>

@@ -6,7 +6,8 @@ const imagesSlice = createSlice({
         images: [],
         popupImage: null,
         imagesAreLoading: true,
-        popupImageIsLoading: true
+        popupImageIsLoading: true,
+        commentIsSending: false
     },
     reducers: {
         setImages(state, action) {
@@ -17,6 +18,11 @@ const imagesSlice = createSlice({
         setPopupImage(state, action) {
             state.popupImage = action.payload;
             state.popupImageIsLoading = false;
+        },
+        setComments(state, action) {
+            state.commentIsSending = true;
+            state.popupImage.comments.push(action.payload);
+            state.commentIsSending = false;
         },
         resetImages(state) {
             state.images = [];
@@ -30,6 +36,9 @@ const imagesSlice = createSlice({
                 state.imagesAreLoading = false;
             }
             if (action.payload === "POPUP_LOADING_FAIL") {
+                state.popupImageIsLoading = false;
+            }
+            if (action.payload === "COMMENT_POST_FAIL") {
                 state.popupImageIsLoading = false;
             }
         }

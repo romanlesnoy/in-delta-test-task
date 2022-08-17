@@ -1,7 +1,7 @@
 import { imagesActions } from "./images-slice";
 import { errorActions } from "./error-slice";
 
-import { getImages, getLargeImage } from "../api/api";
+import { getImages, getLargeImage, sendComment } from "../api/api";
 
 export const fetchImages = () => {
     return async (dispatch, getState) => {
@@ -38,10 +38,34 @@ export const fetchLargeImage = (id) => {
             }
 
             const largeImage = await getLargeImage(id);
-
             dispatch(imagesActions.setPopupImage(largeImage));
         } catch (error) {
             dispatch(imagesActions.resetLoadingState("POPUP_LOADING_FAIL"));
+            dispatch(
+                errorActions.showError({
+                    message: "Request failed! Try again later."
+                })
+            );
+        }
+    };
+};
+
+export const postComment = ({ id, comment, name, date, imageId }) => {
+    return async (dispatch) => {
+        try {
+            const response = await sendComment(imageId, name, comment);
+            console.log(response);
+
+            dispatch(
+                imagesActions.setComments({
+                    id: id,
+                    text: comment,
+                    date: date
+                })
+            );
+        } catch (error) {
+            console.log(error);
+            dispatch(imagesActions.resetLoadingState("COMMENT_POST_FAIL"));
             dispatch(
                 errorActions.showError({
                     message: "Request failed! Try again later."

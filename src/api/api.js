@@ -3,8 +3,9 @@ const baseUrl = "https://boiling-refuge-66454.herokuapp.com/images";
 const response = (res) => {
     if (res.ok) {
         return res.json();
+    } else {
+        throw new Error("Request failed!");
     }
-    return Promise.reject(`Error ${res.status}`);
 };
 
 export const getImages = async () => {
@@ -15,7 +16,7 @@ export const getLargeImage = (id) => {
     return fetch(`${baseUrl}/${id}`).then(response);
 };
 
-export const postComment = (id, name, comment) => {
+export const sendComment = (id, name, comment) => {
     fetch(`${baseUrl}/${id}/comments`, {
         method: "POST",
         headers: {
