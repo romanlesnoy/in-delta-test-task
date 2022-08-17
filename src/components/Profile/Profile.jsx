@@ -1,17 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import classes from "./Profile.module.css";
 
 const Profile = () => {
+    const userName = useSelector((state) => state.user.userName);
+    const userAvatar = useSelector((state) => state.user.userAvatar);
+
     return (
         <section className={classes.profile}>
             <div className={classes.user}>
-                <img
-                    className={classes.avatar}
-                    src="/images/avatar.jpg"
-                    alt="avatar"
-                />
-                <h1 className={classes.name}>Ricardo Cooper</h1>
+                <img className={classes.avatar} src={userAvatar} alt="avatar" />
+                <h1 className={classes.name}>{userName}</h1>
             </div>
             <div className={classes.contact}>
                 <button className={classes.button}>
