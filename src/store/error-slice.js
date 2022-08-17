@@ -2,16 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const errorSlice = createSlice({
     name: "error",
-    initialState: { notification: null },
+    initialState: { notification: null, commentNotification: null },
     reducers: {
         showError(state, action) {
-            console.log(action.payload);
             state.notification = {
                 message: action.payload.message
             };
         },
+        setCommentNotification(state, action) {
+            state.commentNotification = action.payload;
+        },
         resetNotification(state) {
             state.notification = null;
+        },
+        resetCommentNotification(state) {
+            state.commentNotification = null;
         }
     }
 });

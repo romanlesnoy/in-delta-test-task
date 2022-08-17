@@ -9,6 +9,13 @@ import useInput from "../../hooks/use-input";
 const isEmpty = (value) => value.trim() !== "";
 
 const CommentForm = (props) => {
+    const dispatch = useDispatch();
+    const userName = useSelector((state) => state.user.userName);
+    const isLoading = useSelector((state) => state.images.commentIsSending);
+    const notification = useSelector(
+        (state) => state.error.commentNotification
+    );
+
     const {
         value: enteredComment,
         isValid: enteredCommentIsValid,
@@ -17,11 +24,6 @@ const CommentForm = (props) => {
         inputBlurHandler: commentBlurHandler,
         reset: resetCommentInput
     } = useInput(isEmpty);
-
-    const dispatch = useDispatch();
-    const userName = useSelector((state) => state.user.userName);
-    const isLoading = useSelector((state) => state.images.commentIsSending);
-    const notification = useSelector((state) => state.error.notification);
 
     const saveHandler = (event) => {
         event.preventDefault();
@@ -63,14 +65,14 @@ const CommentForm = (props) => {
                     onBlur={commentBlurHandler}
                 ></textarea>
 
-                {!commentInputHasError && (
+                {!commentInputHasError && !notification && (
                     <span className={classes.span}>
                         Write a few sentences about the photo.
                     </span>
                 )}
 
                 {notification && (
-                    <span className={classes.span}>{notification.message}</span>
+                    <span className={classes.span}>{notification}</span>
                 )}
 
                 {commentInputHasError && (

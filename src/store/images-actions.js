@@ -54,7 +54,7 @@ export const postComment = ({ id, comment, name, date, imageId }) => {
     return async (dispatch) => {
         try {
             const response = await sendComment(imageId, name, comment);
-            console.log(response);
+            dispatch(errorActions.setCommentNotification(response));
 
             dispatch(
                 imagesActions.setComments({
@@ -64,12 +64,11 @@ export const postComment = ({ id, comment, name, date, imageId }) => {
                 })
             );
         } catch (error) {
-            console.log(error);
             dispatch(imagesActions.resetLoadingState("COMMENT_POST_FAIL"));
             dispatch(
-                errorActions.showError({
-                    message: "Request failed! Try again later."
-                })
+                errorActions.setCommentNotification(
+                    "Request failed! Try again later."
+                )
             );
         }
     };

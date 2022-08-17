@@ -3,9 +3,8 @@ const baseUrl = "https://boiling-refuge-66454.herokuapp.com/images";
 const response = (res) => {
     if (res.ok) {
         return res.json();
-    } else {
-        throw new Error("Request failed!");
     }
+    return Promise.reject(`Error ${res.status}`);
 };
 
 export const getImages = async () => {
@@ -30,8 +29,7 @@ export const sendComment = async (id, name, comment) => {
     }).then((res) => {
         if (res.ok) {
             return "Comment sent successfully!";
-        } else {
-            throw new Error("Request failed!");
         }
+        return Promise.reject(`Error ${res.status}`);
     });
 };
