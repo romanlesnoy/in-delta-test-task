@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 
 import styles from "./ErrorNotification.module.css";
 
-const ErrorNotification = (props) => {
+const ErrorNotification = ({ error }) => {
+    const { message } = error;
     return (
         <section className={styles.notification}>
-            <h2>{props.error}</h2>
-            <p>Try again later</p>
+            <p>{message}</p>
         </section>
     );
 };
 
 ErrorNotification.propTypes = {
-    error: PropTypes.string
+    error: PropTypes.object
 };
 
 export default ErrorNotification;

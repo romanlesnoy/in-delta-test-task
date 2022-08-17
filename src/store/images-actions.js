@@ -17,10 +17,10 @@ export const fetchImages = () => {
 
             dispatch(imagesActions.setImages(images));
         } catch (error) {
+            dispatch(imagesActions.resetLoadingState("IMAGES_LOADING_FAIL"));
             dispatch(
                 errorActions.showError({
-                    title: error,
-                    message: "Fetching images failed! Try again later."
+                    message: "Request failed! Try again later."
                 })
             );
         }
@@ -41,10 +41,10 @@ export const fetchLargeImage = (id) => {
 
             dispatch(imagesActions.setPopupImage(largeImage));
         } catch (error) {
+            dispatch(imagesActions.resetLoadingState("POPUP_LOADING_FAIL"));
             dispatch(
                 errorActions.showError({
-                    title: error,
-                    message: "Fetching image failed! Try again later."
+                    message: "Request failed! Try again later."
                 })
             );
         }

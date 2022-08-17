@@ -26,11 +26,11 @@ const imagesSlice = createSlice({
             state.popupImage = null;
         },
         resetLoadingState(state, action) {
-            if (action.payload === "STORIES_LOADING_FAIL") {
-                state.storiesAreLoading = false;
+            if (action.payload === "IMAGES_LOADING_FAIL") {
+                state.imagesAreLoading = false;
             }
-            if (action.payload === "ARTICLE_LOADING_FAIL") {
-                state.articleIsLoading = false;
+            if (action.payload === "POPUP_LOADING_FAIL") {
+                state.popupImageIsLoading = false;
             }
         }
     }

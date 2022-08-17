@@ -5,8 +5,8 @@ const errorSlice = createSlice({
     initialState: { notification: null },
     reducers: {
         showError(state, action) {
+            console.log(action.payload);
             state.notification = {
-                title: action.payload,
                 message: action.payload.message
             };
         },

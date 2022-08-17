@@ -23,7 +23,7 @@ const CardList = (props) => {
     return (
         <section>
             {isLoading && <Preloader />}
-            {notification && <ErrorNotification error={notification.title} />}
+            {notification && <ErrorNotification error={notification} />}
             {images && (
                 <ul className={classes.cardList}>
                     {images.map((image) => {
