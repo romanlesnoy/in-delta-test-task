@@ -1,0 +1,12 @@
+.title {
+    padding-bottom: 4px;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.comment {
+    padding-left: 12px;
+}

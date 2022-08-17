@@ -63,7 +63,7 @@ const CommentForm = (props) => {
         <React.Fragment>
             <form className={classes.form} onSubmit={saveHandler}>
                 <label className={classes.label} htmlFor="Comment">
-                    Comment
+                    Leave Comment
                 </label>
                 <textarea
                     className={classes.textarea}
