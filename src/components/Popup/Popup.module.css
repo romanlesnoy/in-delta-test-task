@@ -1,0 +1,7 @@
+.image {
+    align-self: center;
+    width: 405px;
+    height: 405px;
+    object-fit: cover;
+    border-radius: 24px;
+}

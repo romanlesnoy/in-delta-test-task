@@ -6,6 +6,7 @@ import CommentForm from "../CommentForm/CommentForm";
 import ErrorNotification from "../ErrorNotification/ErrorNotification";
 import Preloader from "../Preloader/Preloader";
 import useHttp from "../../hooks/use-http";
+import classes from "./Popup.module.css";
 
 const Popup = (props) => {
     const [image, setImage] = useState({});
@@ -27,7 +28,7 @@ const Popup = (props) => {
 
     const popupContent = (
         <>
-            <img src={image.url} alt="some staff" />
+            <img className={classes.image} src={image.url} alt="some staff" />
             <CommentForm id={props.imageId} />
         </>
     );
