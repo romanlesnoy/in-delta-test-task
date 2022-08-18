@@ -64,7 +64,6 @@ export const postComment = ({ id, comment, name, date, imageId }) => {
                 })
             );
         } catch (error) {
-            dispatch(imagesActions.resetLoadingState("COMMENT_POST_FAIL"));
             dispatch(
                 errorActions.setCommentNotification(
                     "Request failed! Try again later."

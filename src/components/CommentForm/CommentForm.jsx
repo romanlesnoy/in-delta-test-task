@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 
 import { postComment } from "../../store/images-actions";
 import classes from "./CommentForm.module.css";
 import useInput from "../../hooks/use-input";
+import { errorActions } from "../../store/error-slice";
 
 const isEmpty = (value) => value.trim() !== "";
 
@@ -15,6 +16,18 @@ const CommentForm = (props) => {
     const notification = useSelector(
         (state) => state.error.commentNotification
     );
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
+
+    const resetNotification = () => {
+        if (notification) {
+            dispatch(errorActions.resetCommentNotification());
+        }
+    };
 
     const {
         value: enteredComment,
@@ -63,6 +76,8 @@ const CommentForm = (props) => {
                     value={enteredComment}
                     onChange={commentChangeHandler}
                     onBlur={commentBlurHandler}
+                    onFocus={resetNotification}
+                    ref={inputRef}
                 ></textarea>
 
                 {!commentInputHasError && !notification && (
@@ -71,11 +86,11 @@ const CommentForm = (props) => {
                     </span>
                 )}
 
-                {notification && (
+                {notification && !commentInputHasError && (
                     <span className={classes.span}>{notification}</span>
                 )}
 
-                {commentInputHasError && (
+                {commentInputHasError && !notification && (
                     <span className={classes.error}>
                         Leave a comment. The form must not be empty.
                     </span>

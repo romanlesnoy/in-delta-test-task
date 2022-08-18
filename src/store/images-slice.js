@@ -38,9 +38,6 @@ const imagesSlice = createSlice({
             if (action.payload === "POPUP_LOADING_FAIL") {
                 state.popupImageIsLoading = false;
             }
-            if (action.payload === "COMMENT_POST_FAIL") {
-                state.popupImageIsLoading = false;
-            }
         }
     }
 });
