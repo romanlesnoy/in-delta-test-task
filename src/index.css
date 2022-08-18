@@ -1,4 +1,5 @@
 @import url(./styles/normalize.css);
+@import url(./styles/fonts/fonts.css);
 
 * {
     box-sizing: border-box;
@@ -10,7 +11,7 @@ body {
     height: 100%;
     color: #000;
     background: #e5e5e5;
-    font-family: Helvetica, Arial, system-ui, sans-serif;
+    font-family: "Inter", Helvetica, Arial, system-ui, sans-serif;
     min-width: 320px;
 }
 
@@ -88,10 +89,6 @@ button:disabled:active {
     color: #292929;
     border-color: #ccc;
     cursor: not-allowed;
-}
-
-figure {
-    margin: 0;
 }
 
 input,
