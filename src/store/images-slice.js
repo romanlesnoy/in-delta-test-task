@@ -20,9 +20,11 @@ const imagesSlice = createSlice({
             state.popupImageIsLoading = false;
         },
         setComments(state, action) {
-            state.commentIsSending = true;
             state.popupImage.comments.push(action.payload);
             state.commentIsSending = false;
+        },
+        setCommentsLoading(state, action) {
+            state.commentIsSending = action.payload;
         },
         resetImages(state) {
             state.images = [];

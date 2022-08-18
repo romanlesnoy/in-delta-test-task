@@ -53,6 +53,7 @@ export const fetchLargeImage = (id) => {
 export const postComment = ({ id, comment, name, date, imageId }) => {
     return async (dispatch) => {
         try {
+            dispatch(imagesActions.setCommentsLoading(true));
             const response = await sendComment(imageId, name, comment);
             dispatch(errorActions.setCommentNotification(response));
 
