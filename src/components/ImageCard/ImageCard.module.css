@@ -17,3 +17,11 @@
     line-height: 20px;
     color: #111827;
 }
+
+@media screen and (max-width: 494px) {
+    .image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+}
